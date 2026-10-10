@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+@theme {
+  /* CyberHound Operations Cockpit 设计令牌（源自 Stitch 设计系统） */
+  --color-canvas: #070b14;
+  --color-surface: #0b1326;
+  --color-panel: #0a1124;
+  --color-container: #0f172a;
+  --color-elevated: #171f33;
+  --color-line: #1e293b;
+  --color-line-strong: #334155;
+
+  --color-primary: #00f2fe;
+  --color-primary-dim: #00d2ff;
+  --color-info: #38bdf8;
+  --color-success: #10b981;
+  --color-teal: #06b6d4;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --color-critical: #f43f5e;
+
+  --color-text-hi: #f8fafc;
+  --color-text-mid: #94a3b8;
+  --color-text-low: #64748b;
+
+  --font-headline: 'Space Grotesk', 'Noto Sans SC', sans-serif;
+  --font-body: 'Inter', 'Noto Sans SC', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Noto Sans SC', monospace;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  @apply bg-canvas text-text-hi font-body antialiased;
+  background-image: linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.25);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 发光文本 */
+.glow-text {
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+}
+
+/* 面板顶部流光线 */
+.stream-line {
+  position: relative;
+}
+.stream-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #00f2fe 50%, transparent 100%);
+}
+
+/* 紧急按钮 1Hz 脉冲 */
+@keyframes pulse-danger {
+  0%,
+  100% {
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(239, 68, 68, 0.7);
+  }
+}
+.pulse-danger {
+  animation: pulse-danger 1s ease-in-out infinite;
+}

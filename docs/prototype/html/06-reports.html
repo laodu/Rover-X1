@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rover X1 智能巡检管控平台 - 巡检报告</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts & Material Symbols -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Space+Grotesk:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-container-high": "#222a3d",
+              "surface-bright": "#31394d",
+              "error": "#ffb4ab",
+              "tertiary-fixed": "#ffdadb",
+              "tertiary-fixed-dim": "#ffb2b7",
+              "primary": "#e0fdff",
+              "on-error-container": "#ffdad6",
+              "inverse-on-surface": "#283044",
+              "on-secondary": "#003824",
+              "background": "#0b1326",
+              "on-tertiary": "#67001b",
+              "on-secondary-fixed": "#002113",
+              "inverse-surface": "#dae2fd",
+              "secondary-fixed": "#6ffbbe",
+              "on-tertiary-fixed": "#40000d",
+              "on-primary-fixed-variant": "#004f53",
+              "on-primary": "#00373a",
+              "on-tertiary-container": "#be0d3c",
+              "on-primary-fixed": "#002022",
+              "on-background": "#dae2fd",
+              "surface-variant": "#2d3449",
+              "surface-container": "#171f33",
+              "on-secondary-fixed-variant": "#005236",
+              "on-error": "#690005",
+              "tertiary": "#fff5f4",
+              "inverse-primary": "#00696f",
+              "surface-container-lowest": "#060e20",
+              "surface-dim": "#0b1326",
+              "primary-container": "#00f2fe",
+              "surface-container-low": "#131b2e",
+              "secondary-container": "#00a572",
+              "on-surface": "#dae2fd",
+              "surface-container-highest": "#2d3449",
+              "primary-fixed": "#6ff6ff",
+              "surface": "#0b1326",
+              "tertiary-container": "#ffcfd1",
+              "on-tertiary-fixed-variant": "#92002a",
+              "secondary-fixed-dim": "#4edea3",
+              "secondary": "#4edea3",
+              "on-surface-variant": "#b9cacb",
+              "on-primary-container": "#006a70",
+              "outline": "#849495",
+              "surface-tint": "#00dce6",
+              "outline-variant": "#3a494b",
+              "on-secondary-container": "#00311f",
+              "primary-fixed-dim": "#00dce6",
+              "error-container": "#93000a"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+            },
+            "spacing": {
+              "space-xs": "0.25rem",
+              "space-xl": "2rem",
+              "space-lg": "1.5rem",
+              "space-sm": "0.5rem",
+              "space-md": "1rem",
+              "margin-desktop": "1.5rem",
+              "margin": "1rem",
+              "gutter-desktop": "1.25rem",
+              "gutter": "1rem"
+            },
+            "fontFamily": {
+              "title-md": ["Inter"],
+              "headline-lg-mobile": ["Space Grotesk"],
+              "headline-lg": ["Space Grotesk"],
+              "data-metric-lg": ["JetBrains Mono"],
+              "headline-xl": ["Space Grotesk"],
+              "label-md": ["JetBrains Mono"],
+              "headline-md": ["Space Grotesk"],
+              "body-lg": ["Inter"],
+              "label-sm": ["JetBrains Mono"],
+              "body-md": ["Inter"],
+              "title-lg": ["Space Grotesk"],
+              "data-metric-md": ["JetBrains Mono"],
+              "body-sm": ["Inter"],
+              "headline-sm": ["Space Grotesk"],
+              "title-sm": ["Inter"]
+            },
+            "fontSize": {
+              "title-md": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+              "headline-lg-mobile": ["26px", { "lineHeight": "34px", "fontWeight": "700" }],
+              "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+              "data-metric-lg": ["32px", { "lineHeight": "36px", "fontWeight": "700" }],
+              "headline-xl": ["40px", { "lineHeight": "48px", "fontWeight": "700" }],
+              "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+              "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+              "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+              "label-sm": ["10px", { "lineHeight": "14px", "fontWeight": "500" }],
+              "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+              "title-lg": ["18px", { "lineHeight": "26px", "fontWeight": "600" }],
+              "data-metric-md": ["20px", { "lineHeight": "24px", "fontWeight": "700" }],
+              "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
+              "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+              "title-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(rgba(0, 242, 254, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 254, 0.02) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .cyber-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            position: relative;
+        }
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 6px;
+            border-top: 2px solid #00f2fe;
+            border-left: 2px solid #00f2fe;
+        }
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0; width: 6px; height: 6px;
+            border-bottom: 2px solid #00f2fe;
+            border-right: 2px solid #00f2fe;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar Shell -->
+<header class="w-full h-16 px-gutter-desktop flex items-center justify-between z-50 sticky top-0 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md shadow-[0_4px_24px_rgba(0,242,254,0.06)]">
+<div class="flex items-center gap-6">
+<div class="text-title-lg font-title-lg font-bold text-primary dark:text-primary tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+                Rover X1 智能巡检管控平台
+            </div>
+<nav class="hidden md:flex items-center space-x-1">
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">驾驶舱总览</a>
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">巡检任务</a>
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">数字孪生</a>
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">机器人集群</a>
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">告警中心</a>
+<a class="px-3 py-2 text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md" href="#">系统配置</a>
+<!-- Active Nav Item -->
+<a class="px-3 py-2 text-primary-container font-semibold border-b-2 border-primary-container shadow-[0_2px_8px_rgba(0,242,254,0.4)] text-label-md font-label-md" href="#">巡检报告</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-3 py-1.5 rounded bg-error-container/40 border border-error text-error text-label-md font-label-md hover:bg-error-container/60 transition-all flex items-center gap-1 shadow-[0_0_12px_rgba(239,68,68,0.3)]">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">emergency_home</span>
+                紧急制动 / 返航
+            </button>
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant/30">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-high/40">
+<span class="material-symbols-outlined">notifications_active</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-high/40">
+<span class="material-symbols-outlined">grid_view</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors rounded hover:bg-surface-container-high/40">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<div class="flex items-center gap-2 ml-1 cursor-pointer">
+<img class="w-8 h-8 rounded-full border border-primary-container object-cover" data-alt="Close up portrait of a male robotics command center operator wearing a tactical headset and modern uniform in a high tech dark room illuminated by neon blue displays." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT9oC1K4uukHDZm9Z554JMI08O7O5ZT1l7ScTwGU7AxRHH80UsOgmmBb1zwcbCeEBtxhn_DFMwfbPIlVfdNChnijSNl7OgTVlzTuB7QqlcKo_HuUsDxYaeTnrSgmXinT8bxd6nRmthxwoTDAEvK_TJHSyooeb2HSwDj2TAIlcm-43Eyv3la4rwOk3sXwEmvRMB4-IhQ672hHlxcjGt_tKOPmYzqjOiyzv7KZwaimtEDZvX0K8nesJjaZI4quQAuREt9GTp8c7VaeUc"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 px-gutter-desktop py-6 max-w-[1920px] mx-auto w-full flex flex-col gap-6">
+<!-- 1. 顶部指标概览栏 (KPI Metrics Summary Banner) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Metric Card 1 -->
+<div class="cyber-card p-4 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-md font-label-md uppercase tracking-wider">[SYS.01 // MONTHLY_TOTAL]</span>
+<span class="material-symbols-outlined text-primary-container">assignment</span>
+</div>
+<div class="mt-3 flex items-baseline justify-between">
+<div>
+<span class="text-data-metric-lg font-data-metric-lg text-primary">126</span>
+<span class="text-body-sm text-on-surface-variant ml-1">次</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">trending_up</span> +12.4%
+                    </span>
+</div>
+<div class="text-body-sm text-on-surface-variant mt-1">本月累计巡检任务</div>
+</div>
+<!-- Metric Card 2 -->
+<div class="cyber-card p-4 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-md font-label-md uppercase tracking-wider">[SYS.02 // TOTAL_MILEAGE]</span>
+<span class="material-symbols-outlined text-primary-container">route</span>
+</div>
+<div class="mt-3 flex items-baseline justify-between">
+<div>
+<span class="text-data-metric-lg font-data-metric-lg text-primary">342</span>
+<span class="text-body-sm text-on-surface-variant ml-1">km</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">radar</span> 实时测算
+                    </span>
+</div>
+<div class="text-body-sm text-on-surface-variant mt-1">巡检总里程累计</div>
+</div>
+<!-- Metric Card 3 -->
+<div class="cyber-card p-4 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-md font-label-md uppercase tracking-wider">[SYS.03 // HAZARDS_FOUND]</span>
+<span class="material-symbols-outlined text-amber-400">warning</span>
+</div>
+<div class="mt-3 flex items-baseline justify-between">
+<div>
+<span class="text-data-metric-lg font-data-metric-lg text-amber-300">89</span>
+<span class="text-body-sm text-on-surface-variant ml-1">处</span>
+</div>
+<span class="text-label-sm font-label-sm text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">
+                        需重点关注
+                    </span>
+</div>
+<div class="text-body-sm text-on-surface-variant mt-1">发现隐患总数</div>
+</div>
+<!-- Metric Card 4 -->
+<div class="cyber-card p-4 rounded-lg flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-md font-label-md uppercase tracking-wider">[SYS.04 // CLOSED_LOOP]</span>
+<span class="material-symbols-outlined text-secondary">task_alt</span>
+</div>
+<div class="mt-3 flex items-baseline justify-between">
+<div>
+<span class="text-data-metric-lg font-data-metric-lg text-secondary">96</span>
+<span class="text-body-sm text-on-surface-variant ml-1">%</span>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded flex items-center gap-0.5">
+<span class="material-symbols-outlined text-xs">verified</span> 高效闭环
+                    </span>
+</div>
+<div class="text-body-sm text-on-surface-variant mt-1">隐患闭环处置率</div>
+</div>
+</section>
+<!-- 2. 筛选工具栏 (Filter Toolbar) -->
+<section class="cyber-card p-4 rounded-lg flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<!-- Time Range -->
+<div class="flex items-center bg-surface-container-high rounded p-1 border border-outline-variant/40">
+<button class="px-3 py-1.5 text-label-md font-label-md bg-primary-container text-on-primary-container rounded shadow">近 7 天</button>
+<button class="px-3 py-1.5 text-label-md font-label-md text-on-surface-variant hover:text-primary">近 30 天</button>
+<button class="px-3 py-1.5 text-label-md font-label-md text-on-surface-variant hover:text-primary">自定义</button>
+</div>
+<!-- Area Select -->
+<select class="bg-surface-container-high border border-outline-variant/40 text-on-surface text-label-md rounded px-3 py-2 focus:ring-1 focus:ring-primary-container">
+<option>全部区域</option>
+<option>A区变电站</option>
+<option>园区外周北侧</option>
+<option>地下管廊</option>
+</select>
+<!-- Robot Select -->
+<select class="bg-surface-container-high border border-outline-variant/40 text-on-surface text-label-md rounded px-3 py-2 focus:ring-1 focus:ring-primary-container">
+<option>全部设备</option>
+<option>Rover-01</option>
+<option>Rover-02</option>
+<option>Rover-03</option>
+<option>Rover-04</option>
+</select>
+<!-- Report Type -->
+<select class="bg-surface-container-high border border-outline-variant/40 text-on-surface text-label-md rounded px-3 py-2 focus:ring-1 focus:ring-primary-container">
+<option>全部报告类型</option>
+<option>日报</option>
+<option>周报</option>
+<option>月报</option>
+</select>
+</div>
+<!-- Export Buttons -->
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 bg-surface-container-high border border-primary-container/40 text-primary hover:bg-primary-container/10 rounded text-label-md font-label-md flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-sm">download</span> 导出PDF
+                </button>
+<button class="px-4 py-2 bg-surface-container-high border border-primary-container/40 text-primary hover:bg-primary-container/10 rounded text-label-md font-label-md flex items-center gap-1.5 transition-all">
+<span class="material-symbols-outlined text-sm">table_view</span> 导出Excel
+                </button>
+</div>
+</section>
+<!-- 3. 主体上半区：数据分析图表区 (2x2 Grid) -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+<!-- Chart Card 1 -->
+<div class="cyber-card p-5 rounded-lg flex flex-col justify-between h-[320px]">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-sm">show_chart</span>
+<h3 class="text-title-md font-title-md text-on-surface">[CHART.01 // 近30天巡检任务完成趋势]</h3>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">运行稳定</span>
+</div>
+<div class="flex-1 flex items-end justify-between gap-2 pt-4 px-2">
+<!-- Simulated bar/line graph representation -->
+<div class="w-full h-full flex items-end justify-between gap-1">
+<div class="w-1/30 bg-primary-container/20 hover:bg-primary-container transition-all rounded-t h-[45%] relative group"></div>
+<div class="w-1/30 bg-primary-container/30 hover:bg-primary-container transition-all rounded-t h-[60%] relative group"></div>
+<div class="w-1/30 bg-primary-container/20 hover:bg-primary-container transition-all rounded-t h-[55%] relative group"></div>
+<div class="w-1/30 bg-primary-container/40 hover:bg-primary-container transition-all rounded-t h-[70%] relative group"></div>
+<div class="w-1/30 bg-primary-container/50 hover:bg-primary-container transition-all rounded-t h-[80%] relative group"></div>
+<div class="w-1/30 bg-primary-container/30 hover:bg-primary-container transition-all rounded-t h-[65%] relative group"></div>
+<div class="w-1/30 bg-primary-container/60 hover:bg-primary-container transition-all rounded-t h-[85%] relative group"></div>
+<div class="w-1/30 bg-primary-container/80 hover:bg-primary-container transition-all rounded-t h-[90%] relative group"></div>
+<div class="w-1/30 bg-primary-container/70 hover:bg-primary-container transition-all rounded-t h-[75%] relative group"></div>
+<div class="w-1/30 bg-primary-container hover:bg-primary-container transition-all rounded-t h-[95%] relative group"></div>
+</div>
+</div>
+<div class="flex justify-between text-label-sm text-on-surface-variant pt-2 border-t border-outline-variant/20">
+<span>10月01日</span>
+<span>任务完成率: 98.5%</span>
+<span>10月30日</span>
+</div>
+</div>
+<!-- Chart Card 2 -->
+<div class="cyber-card p-5 rounded-lg flex flex-col justify-between h-[320px]">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-amber-400 text-sm">bar_chart</span>
+<h3 class="text-title-md font-title-md text-on-surface">[CHART.02 // 告警类型分布统计]</h3>
+</div>
+<span class="text-label-sm font-label-sm text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">多发预警</span>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-3 py-2">
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>烟火识别</span><span class="text-primary">12 处</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-primary-container h-full rounded" style="width: 30%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>人员越界</span><span class="text-primary">28 处</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-amber-400 h-full rounded" style="width: 70%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>垃圾满溢</span><span class="text-primary">15 处</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-secondary h-full rounded" style="width: 40%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>设备过温</span><span class="text-primary">22 处</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-error h-full rounded" style="width: 55%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>气体异常</span><span class="text-primary">12 处</span></div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-indigo-400 h-full rounded" style="width: 30%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart Card 3 -->
+<div class="cyber-card p-5 rounded-lg flex flex-col justify-between h-[320px]">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-sm">analytics</span>
+<h3 class="text-title-md font-title-md text-on-surface">[CHART.03 // 各区域隐患热力对比]</h3>
+</div>
+<span class="text-label-sm font-label-sm text-primary bg-primary/10 px-2 py-0.5 rounded">热力排序</span>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-4 py-2">
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>A区变电站</span><span class="text-primary">35 隐患</span></div>
+<div class="w-full bg-surface-container-high h-3 rounded overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-secondary h-full rounded" style="width: 85%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>地下管廊</span><span class="text-primary">24 隐患</span></div>
+<div class="w-full bg-surface-container-high h-3 rounded overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-secondary h-full rounded" style="width: 60%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>生活区B-3</span><span class="text-primary">18 隐患</span></div>
+<div class="w-full bg-surface-container-high h-3 rounded overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-secondary h-full rounded" style="width: 45%;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-label-md mb-1"><span>主变压器室</span><span class="text-primary">12 隐患</span></div>
+<div class="w-full bg-surface-container-high h-3 rounded overflow-hidden">
+<div class="bg-gradient-to-r from-primary-container to-secondary h-full rounded" style="width: 30%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chart Card 4 -->
+<div class="cyber-card p-5 rounded-lg flex flex-col justify-between h-[320px]">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm">donut_large</span>
+<h3 class="text-title-md font-title-md text-on-surface">[CHART.04 // 机器狗利用率与里程统计]</h3>
+</div>
+<span class="text-label-sm font-label-sm text-secondary bg-secondary/10 px-2 py-0.5 rounded">集群满载</span>
+</div>
+<div class="flex-1 flex flex-col justify-center gap-4 py-2">
+<div class="flex items-center justify-between">
+<span class="text-label-md text-on-surface">Rover-01 (主变区)</span>
+<span class="text-data-metric-md text-primary">98.2h / 112 km</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-primary-container h-full rounded" style="width: 90%;"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-md text-on-surface">Rover-02 (管廊专项)</span>
+<span class="text-data-metric-md text-primary">85.4h / 95 km</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-primary-container h-full rounded" style="width: 78%;"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-md text-on-surface">Rover-03 (外周安防)</span>
+<span class="text-data-metric-md text-primary">91.0h / 105 km</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-primary-container h-full rounded" style="width: 84%;"></div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-label-md text-on-surface">Rover-04 (备勤机)</span>
+<span class="text-data-metric-md text-on-surface-variant">24.5h / 30 km</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded overflow-hidden">
+<div class="bg-surface-bright h-full rounded" style="width: 30%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. 主体下半区：巡检记录详细表格 (Inspection Records Table) -->
+<section class="cyber-card p-5 rounded-lg flex flex-col gap-4">
+<div class="flex items-center justify-between border-b border-outline-variant/30 pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container">database</span>
+<h3 class="text-title-lg font-title-lg text-on-surface">[REP.LOG // 智能巡检归档报告数据库]</h3>
+</div>
+<div class="flex items-center gap-2 text-label-md text-on-surface-variant">
+<span>显示第 1-4 条，共 126 条记录</span>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/40 text-label-md font-label-md text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-3">报告编号</th>
+<th class="py-3 px-3">巡检任务名称</th>
+<th class="py-3 px-3">执行机器狗</th>
+<th class="py-3 px-3">巡检路线</th>
+<th class="py-3 px-3">开始 / 结束时间</th>
+<th class="py-3 px-3">覆盖点位数</th>
+<th class="py-3 px-3">发现隐患数</th>
+<th class="py-3 px-3">报告状态</th>
+<th class="py-3 px-3 text-right">操作</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 text-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="py-3 px-3 font-data-metric-md text-primary-container">REP-2042-089</td>
+<td class="py-3 px-3 font-medium text-on-surface">A区配电房日常巡检-V2</td>
+<td class="py-3 px-3 text-on-surface-variant">Rover-01</td>
+<td class="py-3 px-3 text-on-surface-variant text-body-sm">#01主变压器 -&gt; #02开关柜</td>
+<td class="py-3 px-3 text-label-sm font-label-sm text-on-surface-variant">2042-10-23 14:00<br/>14:45</td>
+<td class="py-3 px-3 font-data-metric-md">20 / 20</td>
+<td class="py-3 px-3 text-amber-300 font-medium">2处</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>已归档
+                                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">查看详情</button>
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">下载</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="py-3 px-3 font-data-metric-md text-primary-container">REP-2042-088</td>
+<td class="py-3 px-3 font-medium text-on-surface">园区周界安防巡逻</td>
+<td class="py-3 px-3 text-on-surface-variant">Rover-03</td>
+<td class="py-3 px-3 text-on-surface-variant text-body-sm">南门外围 -&gt; 东侧高架桥</td>
+<td class="py-3 px-3 text-label-sm font-label-sm text-on-surface-variant">2042-10-23 13:30<br/>15:00</td>
+<td class="py-3 px-3 font-data-metric-md">35 / 35</td>
+<td class="py-3 px-3 text-amber-400 font-medium">1处</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-amber-400/10 text-amber-400 border border-amber-400/20">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>待审核
+                                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">查看详情</button>
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">下载</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="py-3 px-3 font-data-metric-md text-primary-container">REP-2042-087</td>
+<td class="py-3 px-3 font-medium text-on-surface">地下管廊环境监测</td>
+<td class="py-3 px-3 text-on-surface-variant">Rover-02</td>
+<td class="py-3 px-3 text-on-surface-variant text-body-sm">12号点 -&gt; 18号点</td>
+<td class="py-3 px-3 text-label-sm font-label-sm text-on-surface-variant">2042-10-23 11:00<br/>12:15</td>
+<td class="py-3 px-3 font-data-metric-md">15 / 15</td>
+<td class="py-3 px-3 text-secondary font-medium">0处</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>已归档
+                                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">查看详情</button>
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">下载</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="py-3 px-3 font-data-metric-md text-primary-container">REP-2042-086</td>
+<td class="py-3 px-3 font-medium text-on-surface">C区仓储防火巡检</td>
+<td class="py-3 px-3 text-on-surface-variant">Rover-01</td>
+<td class="py-3 px-3 text-on-surface-variant text-body-sm">仓储A区 -&gt; 消防通道</td>
+<td class="py-3 px-3 text-label-sm font-label-sm text-on-surface-variant">2042-10-22 16:00<br/>16:38</td>
+<td class="py-3 px-3 font-data-metric-md">25 / 25</td>
+<td class="py-3 px-3 text-secondary font-medium">0处</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>已归档
+                                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">查看详情</button>
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">下载</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-high/40 transition-colors">
+<td class="py-3 px-3 font-data-metric-md text-primary-container">REP-2042-085</td>
+<td class="py-3 px-3 font-medium text-on-surface">主变压器室红外热成像测温</td>
+<td class="py-3 px-3 text-on-surface-variant">Rover-04</td>
+<td class="py-3 px-3 text-on-surface-variant text-body-sm">主变室 #1 -&gt; #4 变压器</td>
+<td class="py-3 px-3 text-label-sm font-label-sm text-on-surface-variant">2042-10-22 09:15<br/>10:05</td>
+<td class="py-3 px-3 font-data-metric-md">18 / 18</td>
+<td class="py-3 px-3 text-amber-300 font-medium">3处</td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded text-label-sm font-label-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>已归档
+                                </span>
+</td>
+<td class="py-3 px-3 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">查看详情</button>
+<button class="px-2 py-1 bg-surface-container-high hover:bg-primary-container/20 text-primary rounded text-label-sm font-label-sm border border-outline-variant/30">下载</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="flex items-center justify-between pt-3 border-t border-outline-variant/30">
+<div class="text-label-md text-on-surface-variant">
+                    每页显示 10 条，共 13 页
+                </div>
+<div class="flex items-center gap-1">
+<button class="px-3 py-1 bg-surface-container-high text-on-surface-variant rounded text-label-md hover:bg-primary-container/20 hover:text-primary transition-colors disabled:opacity-50" disabled="">上一页</button>
+<button class="px-3 py-1 bg-primary-container text-on-primary-container font-semibold rounded text-label-md">1</button>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface rounded text-label-md hover:bg-primary-container/20 hover:text-primary transition-colors">2</button>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface rounded text-label-md hover:bg-primary-container/20 hover:text-primary transition-colors">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface rounded text-label-md hover:bg-primary-container/20 hover:text-primary transition-colors">13</button>
+<button class="px-3 py-1 bg-surface-container-high text-on-surface rounded text-label-md hover:bg-primary-container/20 hover:text-primary transition-colors">下一页</button>
+</div>
+</div>
+</section>
+</main>
+</body></html>

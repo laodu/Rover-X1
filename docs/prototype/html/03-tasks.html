@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<title>Rover X1 Autonomous Fleet Command - 巡检任务管理</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "on-primary": "#00373a",
+              "secondary-fixed": "#6ffbbe",
+              "primary-fixed": "#6ff6ff",
+              "inverse-surface": "#dae2fd",
+              "error-container": "#93000a",
+              "on-surface-variant": "#b9cacb",
+              "tertiary-container": "#ffcfd1",
+              "tertiary-fixed": "#ffdadb",
+              "surface-dim": "#0b1326",
+              "primary-container": "#00f2fe",
+              "primary": "#e0fdff",
+              "on-secondary-fixed-variant": "#005236",
+              "on-primary-fixed-variant": "#004f53",
+              "outline": "#849495",
+              "on-background": "#dae2fd",
+              "on-tertiary-fixed": "#40000d",
+              "tertiary-fixed-dim": "#ffb2b7",
+              "on-secondary": "#003824",
+              "on-error-container": "#ffdad6",
+              "on-error": "#690005",
+              "on-tertiary-container": "#be0d3c",
+              "on-secondary-fixed": "#002113",
+              "outline-variant": "#3a494b",
+              "tertiary": "#fff5f4",
+              "inverse-primary": "#00696f",
+              "inverse-on-surface": "#283044",
+              "primary-fixed-dim": "#00dce6",
+              "surface-variant": "#2d3449",
+              "surface-tint": "#00dce6",
+              "on-surface": "#dae2fd",
+              "on-secondary-container": "#00311f",
+              "secondary": "#4edea3",
+              "on-tertiary": "#67001b",
+              "surface-container-low": "#131b2e",
+              "surface": "#0b1326",
+              "surface-bright": "#31394d",
+              "on-tertiary-fixed-variant": "#92002a",
+              "surface-container-lowest": "#060e20",
+              "secondary-fixed-dim": "#4edea3",
+              "on-primary-fixed": "#002022",
+              "on-primary-container": "#006a70",
+              "surface-container-highest": "#2d3449",
+              "background": "#0b1326",
+              "surface-container-high": "#222a3d",
+              "secondary-container": "#00a572",
+              "error": "#ffb4ab",
+              "surface-container": "#171f33"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.125rem",
+              "lg": "0.25rem",
+              "xl": "0.5rem",
+              "full": "0.75rem"
+            },
+            "spacing": {
+              "margin-desktop": "1.5rem",
+              "gutter": "1rem",
+              "space-xl": "2rem",
+              "margin": "1rem",
+              "space-xs": "0.25rem",
+              "gutter-desktop": "1.25rem",
+              "space-sm": "0.5rem",
+              "space-lg": "1.5rem",
+              "space-md": "1rem"
+            },
+            "fontFamily": {
+              "title-lg": ["Space Grotesk"],
+              "label-sm": ["JetBrains Mono"],
+              "headline-md": ["Space Grotesk"],
+              "data-metric-lg": ["JetBrains Mono"],
+              "title-sm": ["Inter"],
+              "headline-sm": ["Space Grotesk"],
+              "data-metric-md": ["JetBrains Mono"],
+              "body-sm": ["Inter"],
+              "title-md": ["Inter"],
+              "headline-lg-mobile": ["Space Grotesk"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-xl": ["Space Grotesk"],
+              "headline-lg": ["Space Grotesk"],
+              "label-md": ["JetBrains Mono"]
+            },
+            "fontSize": {
+              "title-lg": ["18px", {"lineHeight": "26px", "fontWeight": "600"}],
+              "label-sm": ["10px", {"lineHeight": "14px", "fontWeight": "500"}],
+              "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+              "data-metric-lg": ["32px", {"lineHeight": "36px", "fontWeight": "700"}],
+              "title-sm": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+              "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+              "data-metric-md": ["20px", {"lineHeight": "24px", "fontWeight": "700"}],
+              "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+              "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+              "headline-lg-mobile": ["26px", {"lineHeight": "34px", "fontWeight": "700"}],
+              "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+              "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "headline-xl": ["40px", {"lineHeight": "48px", "fontWeight": "700"}],
+              "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+              "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(rgba(0, 242, 254, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 242, 254, 0.02) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+        .cyber-card {
+            background: rgba(10, 17, 36, 0.72);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(56, 189, 248, 0.18);
+            position: relative;
+        }
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 6px;
+            border-top: 2px solid #00f2fe;
+            border-left: 2px solid #00f2fe;
+        }
+        .cyber-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0; width: 6px; height: 6px;
+            border-bottom: 2px solid #00f2fe;
+            border-right: 2px solid #00f2fe;
+        }
+        .cyber-button {
+            background: linear-gradient(135deg, rgba(0,242,254,0.2), rgba(0,210,255,0.4));
+            border: 1px solid #00F2FE;
+            color: #FFFFFF;
+            text-shadow: 0 0 8px rgba(0,242,254,0.6);
+            transition: all 0.2s ease;
+        }
+        .cyber-button:hover {
+            background: linear-gradient(135deg, rgba(0,242,254,0.3), rgba(0,210,255,0.6));
+            box-shadow: 0 0 15px rgba(0,242,254,0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full h-16 px-gutter-desktop flex items-center justify-between z-50 sticky top-0 bg-surface-container-lowest/80 dark:bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/30 shadow-[0_4px_24px_rgba(0,242,254,0.06)]">
+<div class="text-title-lg font-title-lg font-bold text-primary dark:text-primary tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">neurology</span>
+            Rover X1 Autonomous Fleet Command
+        </div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md py-5" href="#">驾驶舱总览</a>
+<a class="text-primary-container font-semibold border-b-2 border-primary-container shadow-[0_2px_8px_rgba(0,242,254,0.4)] text-label-md font-label-md py-5" href="#">巡检任务</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md py-5" href="#">数字孪生</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md py-5" href="#">机器人集群</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md py-5" href="#">告警中心</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors duration-150 text-label-md font-label-md py-5" href="#">系统配置</a>
+</nav>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-lg hover:bg-surface-container-high/40 text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">notifications_active</span></button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high/40 text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">grid_view</span></button>
+<button class="p-2 rounded-lg hover:bg-surface-container-high/40 text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined">tune</span></button>
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant/30">
+<img class="w-8 h-8 rounded-full border border-primary-container object-cover" data-alt="指挥中心特权调度员头像：身着未来主义科技战术制服的指挥官肖像，带有柔和的发光HUD面部微光，背景呈现赛博朋克深色指挥大厅，高分辨率数字微距摄影风格" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLKn9cGOUxJfI24JwbX5z96em6AZFRonYWRtm3SO_xP5DIMt65vdUzI--f_l0yZKCdvJMgzgIcvKFiJxRnBlrzgKeLhnJlgvVBx5nO0FaPgwmlBPP30eFc0Rn6d5zcol75K6o_4RKbz344h5-S115g9r7geF1w3xCO4e5VKTkacqSG4nznYuchi10RCehxApqukJgJmilH65pkkXBmOSxKImQyPJcZ_2-_JzKVuFNSRB03ve-D03ITJyivTwSqrQ4iCaRw0DR1Mqfw"/>
+<span class="text-label-md font-label-md text-on-surface hidden lg:inline">调度员-01</span>
+</div>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 flex flex-col md:flex-row p-gutter-desktop gap-4 max-w-[1920px] mx-auto w-full">
+<!-- 左侧栏：任务列表与管理面板 (38%) -->
+<section class="w-full md:w-[38%] flex flex-col gap-4">
+<!-- 顶部搜索与新建任务 -->
+<div class="cyber-card p-4 rounded-xl flex items-center gap-3">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant/40 rounded-lg pl-9 pr-4 py-2 text-body-md text-on-surface focus:border-primary-container focus:outline-none" placeholder="搜索巡检任务、机器狗编号..." type="text"/>
+</div>
+<button class="cyber-button px-4 py-2 rounded-lg text-title-sm flex items-center gap-1.5 whitespace-nowrap">
+<span class="material-symbols-outlined text-sm">add</span>新建任务
+                </button>
+</div>
+<!-- 状态筛选标签栏 -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1">
+<button class="px-3 py-1.5 rounded-full bg-primary-container/20 border border-primary-container text-primary text-label-md font-label-md whitespace-nowrap">全部 (12)</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-primary text-label-md font-label-md whitespace-nowrap transition-colors">进行中 (3)</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-primary text-label-md font-label-md whitespace-nowrap transition-colors">待执行 (5)</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-primary text-label-md font-label-md whitespace-nowrap transition-colors">已完成 (3)</button>
+<button class="px-3 py-1.5 rounded-full bg-surface-container border border-outline-variant/30 text-on-surface-variant hover:text-primary text-label-md font-label-md whitespace-nowrap transition-colors">异常 (1)</button>
+</div>
+<!-- 任务卡片列表 -->
+<div class="flex flex-col gap-3 overflow-y-auto max-h-[calc(100vh-260px)] pr-1">
+<!-- 卡片 1 (进行中) -->
+<div class="cyber-card p-4 rounded-xl hover:border-primary-container/60 transition-all cursor-pointer border-l-4 border-l-primary-container">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-label-sm font-label-sm text-primary-container mb-1 block">[TSK.01 // 自动巡检]</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">A区配电房日常巡检</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-primary-container/12 text-primary-container flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>动态进行中
+                        </span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">smart_toy</span>Rover-01</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>计划: 14:00 - 14:45</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-primary-container h-full rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant">
+<span>进度: 13 / 20 点位</span>
+<span class="text-secondary">AI载荷正常</span>
+</div>
+</div>
+<!-- 卡片 2 (异常警示) -->
+<div class="cyber-card p-4 rounded-xl hover:border-error/60 transition-all cursor-pointer border-l-4 border-l-error">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-label-sm font-label-sm text-error mb-1 block">[TSK.02 // 周界安防]</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">园区周界安防巡逻</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-error/15 text-error flex items-center gap-1 animate-pulse">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>异常警示
+                        </span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">smart_toy</span>Rover-03</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>计划: 13:30 - 15:00</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-error h-full rounded-full" style="width: 42%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-error">
+<span>点位 #08: 触发人员越界警报</span>
+<span>已悬停</span>
+</div>
+</div>
+<!-- 卡片 3 (待执行) -->
+<div class="cyber-card p-4 rounded-xl hover:border-primary-container/60 transition-all cursor-pointer border-l-4 border-l-outline-variant">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-label-sm font-label-sm text-on-surface-variant mb-1 block">[TSK.03 // 环境监测]</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">地下管廊气体检测</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant">
+                            待执行
+                        </span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">smart_toy</span>Rover-02</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>计划: 16:00 - 17:00</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-outline-variant h-full rounded-full" style="width: 0%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-on-surface-variant">
+<span>进度: 0 / 15 点位</span>
+<span>周期任务</span>
+</div>
+</div>
+<!-- 卡片 4 (已完成) -->
+<div class="cyber-card p-4 rounded-xl hover:border-primary-container/60 transition-all cursor-pointer opacity-80">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-label-sm font-label-sm text-secondary mb-1 block">[TSK.00 // 定时巡检]</span>
+<h3 class="text-title-md font-title-md text-on-surface font-semibold">C区仓储中心防火巡检</h3>
+</div>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-secondary/12 text-secondary flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>已完成
+                        </span>
+</div>
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-3">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">smart_toy</span>Rover-01</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>耗时: 38分钟</span>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden mb-2">
+<div class="bg-secondary h-full rounded-full" style="width: 100%;"></div>
+</div>
+<div class="flex justify-between items-center text-label-sm font-label-sm text-secondary">
+<span>全部点位达标 (25/25)</span>
+<span>无异常</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 右侧栏：路线编辑与任务配置区 (62%) -->
+<section class="w-full md:w-[62%] flex flex-col gap-4">
+<!-- 上方：数字孪生路线地图 -->
+<div class="cyber-card rounded-xl p-3 flex flex-col h-[340px] relative overflow-hidden">
+<div class="flex justify-between items-center mb-2 z-10">
+<span class="text-label-md font-label-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>[GEO.MAP // 高精空间数字孪生路线编辑]
+                    </span>
+<div class="flex items-center gap-1 bg-surface-container-low p-1 rounded border border-outline-variant/30">
+<button class="p-1 rounded hover:bg-surface-container-high text-primary"><span class="material-symbols-outlined text-sm">layers</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">near_me</span></button>
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant"><span class="material-symbols-outlined text-sm">fullscreen</span></button>
+</div>
+</div>
+<!-- 模拟地图容器 -->
+<div class="flex-1 rounded-lg bg-surface-container-lowest relative overflow-hidden flex items-center justify-center border border-outline-variant/20" data-alt="高精空间数字孪生巡检区域航测地图，俯视视角展现现代化工业园区网格坐标系，发光青色折线连接多个带有数字编号的巡检点位，左上角带有精密坐标轴及动态雷达扫描特效，整体采用深蓝色科幻指挥舱视觉风格" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACo6BNl0wVzF0Fa0OrGZxqOLxDInpOM79NyP1zC9N_Qh5tpxV2uCwMwQpJfXrppZiF9HFUgSTWZ2pjHMvEoVGXWMUCFFBu4zBwCB76i3phycCYopx4i1WpKl3fdCehAmhTLXXRTQoYTAuopYwnsDI1Q4fNDrJs37qxA9p4BVKf-OsOwoTOOAE3TozIj5-iFch9suzjvOjsk2h_CuqFDsPZvanjQQzbOMfv2C2_dh_cfHjswJXW8QLohKuJNH5GTX1SKSDrQZroXppK')">
+<!-- 地图网格线和点位覆盖 -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#1f293d_1px,transparent_1px),linear-gradient(to_bottom,#1f293d_1px,transparent_1px)] bg-[size:24px_24px] opacity-30"></div>
+<!-- 交互巡检点位标记 -->
+<div class="absolute top-[30%] left-[25%] flex flex-col items-center cursor-pointer group">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 border-2 border-primary-container flex items-center justify-center text-primary text-xs font-bold animate-ping absolute"></div>
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-primary-container flex items-center justify-center text-primary text-xs font-bold z-10 shadow-[0_0_12px_rgba(0,242,254,0.6)]">01</div>
+<span class="bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[10px] text-primary border border-primary-container/40 mt-1 whitespace-nowrap">A区配电房</span>
+</div>
+<div class="absolute top-[60%] left-[45%] flex flex-col items-center cursor-pointer group">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-secondary flex items-center justify-center text-secondary text-xs font-bold z-10 shadow-[0_0_12px_rgba(78,222,163,0.6)]">02</div>
+<span class="bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[10px] text-secondary border border-secondary/40 mt-1 whitespace-nowrap">垃圾站</span>
+</div>
+<div class="absolute top-[25%] left-[70%] flex flex-col items-center cursor-pointer group">
+<div class="w-6 h-6 rounded-full bg-surface-container-highest border-2 border-error flex items-center justify-center text-error text-xs font-bold z-10 shadow-[0_0_12px_rgba(255,180,171,0.6)]">03</div>
+<span class="bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[10px] text-error border border-error/40 mt-1 whitespace-nowrap">围墙周界</span>
+</div>
+<!-- 状态浮窗 -->
+<div class="absolute bottom-3 left-3 bg-surface-container/90 backdrop-blur border border-outline-variant/40 px-3 py-1.5 rounded text-label-sm font-label-sm text-on-surface-variant flex items-center gap-3">
+<span>坐标系: WGS84_UTM</span>
+<span class="text-primary">点位吸附: 已开启</span>
+<span class="text-secondary">总路径长度: 1.42 km</span>
+</div>
+</div>
+</div>
+<!-- 下方：任务配置表单区域 -->
+<div class="cyber-card rounded-xl p-4 flex flex-col gap-4">
+<span class="text-label-md font-label-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">settings_input_component</span>[CFG.TASK // 巡检任务参数微调]
+                </span>
+<!-- 第一行配置：任务名称、机器狗、巡检方式 -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">任务名称</label>
+<input class="bg-surface-container-low border border-outline-variant/40 rounded-lg px-3 py-2 text-body-md text-on-surface focus:border-primary-container focus:outline-none" type="text" value="A区配电房日常巡检-V2"/>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">执行机器狗</label>
+<select class="bg-surface-container-low border border-outline-variant/40 rounded-lg px-3 py-2 text-body-md text-on-surface focus:border-primary-container focus:outline-none">
+<option>Rover-01 (四足主力巡检机)</option>
+<option>Rover-02 (重载环境探测机)</option>
+<option>Rover-03 (高速周界安防机)</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-label-sm font-label-sm text-on-surface-variant">巡检方式</label>
+<select class="bg-surface-container-low border border-outline-variant/40 rounded-lg px-3 py-2 text-body-md text-on-surface focus:border-primary-container focus:outline-none">
+<option>定时触发 (每日 14:00)</option>
+<option>周期触发 (每4小时)</option>
+<option>手动下发</option>
+</select>
+</div>
+</div>
+<!-- 巡检点位顺序列表与拖拽排序指示 -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface-variant flex justify-between items-center">
+<span>巡检点位顺序列表 (拖拽调整权重/次序)</span>
+<span class="text-primary-container">共 4 个关键Waypoint</span>
+</label>
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-lg p-2 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-outline cursor-grab">drag_indicator</span>
+<span class="w-5 h-5 rounded bg-primary-container/20 text-primary flex items-center justify-center text-xs font-bold">1</span>
+<span>#01 A区配电房主变压器</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">停留 30s | 测温/局放</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant/30 rounded-lg p-2 flex items-center justify-between gap-2">
+<div class="flex items-center gap-2 text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-outline cursor-grab">drag_indicator</span>
+<span class="w-5 h-5 rounded bg-primary-container/20 text-primary flex items-center justify-center text-xs font-bold">2</span>
+<span>#02 垃圾站满溢检测点</span>
+</div>
+<span class="text-label-sm font-label-sm text-on-surface-variant">停留 15s | 视觉识别</span>
+</div>
+</div>
+<!-- AI检测项多选勾选面板 -->
+<div class="flex flex-col gap-1.5">
+<label class="text-label-sm font-label-sm text-on-surface-variant">AI检测项多选加载</label>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-2">
+<label class="flex items-center gap-2 bg-surface-container-low border border-primary-container/40 p-2 rounded-lg cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-0 bg-surface-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface">烟火识别</span>
+</label>
+<label class="flex items-center gap-2 bg-surface-container-low border border-primary-container/40 p-2 rounded-lg cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-0 bg-surface-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface">人员越界</span>
+</label>
+<label class="flex items-center gap-2 bg-surface-container-low border border-outline-variant/40 p-2 rounded-lg cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-0 bg-surface-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface">垃圾满溢</span>
+</label>
+<label class="flex items-center gap-2 bg-surface-container-low border border-primary-container/40 p-2 rounded-lg cursor-pointer">
+<input checked="" class="rounded border-outline-variant text-primary-container focus:ring-0 bg-surface-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface">设备过温</span>
+</label>
+<label class="flex items-center gap-2 bg-surface-container-low border border-outline-variant/40 p-2 rounded-lg cursor-pointer">
+<input class="rounded border-outline-variant text-primary-container focus:ring-0 bg-surface-container" type="checkbox"/>
+<span class="text-body-sm text-on-surface">气体异常</span>
+</label>
+</div>
+</div>
+<!-- 底部操作栏 -->
+<div class="flex items-center justify-end gap-3 pt-2 border-t border-outline-variant/30">
+<button class="px-4 py-2 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-title-sm">一键重置</button>
+<button class="px-4 py-2 rounded-lg border border-outline-variant/40 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors text-title-sm">取消</button>
+<button class="cyber-button px-6 py-2 rounded-lg text-title-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-sm">send</span>保存并下发
+                    </button>
+</div>
+</div>
+</section>
+</main>
+</body></html>
